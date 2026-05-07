@@ -31,15 +31,19 @@ def flat_term_pv(bond: BaseBond, market_rate: Decimal, valuation_date: date):
     """
     pv = Decimal("0.0")
     coupon_payment = bond.face_value * bond.coupon_rate
-    maturity_years = (bond.maturity_date.year - valuation_date.year)
+    maturity_years = bond.maturity_date.year - valuation_date.year
 
     msg = f"Calculating pv for default-free {maturity_years}-year bond with yearly coupon payments"
     print(msg)
-    for i in range(1, maturity_years+1):
+    for i in range(1, maturity_years + 1):
         if i == maturity_years:
             pv += (
-                (bond.face_value + coupon_payment)
-                /
-                (1+market_rate) ** maturity_years
+                (bond.face_value + coupon_payment) 
+                / 
+                ((1 + market_rate) ** i)
             )
-
+            continue
+        pv += (
+            coupon_payment / ((1+market_rate) ** i)
+        )
+    return pv

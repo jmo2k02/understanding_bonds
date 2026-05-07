@@ -9,8 +9,8 @@ from pydantic import BaseModel, Field
 
 
 class IssuerType(str, Enum):
-    GOVERNMENT = "government"
-    CORPORATE = "corporate"
+    GOVERNMENT = "gov"
+    CORPORATE = "corp"
     BANK = "bank"
 
 
