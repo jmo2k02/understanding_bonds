@@ -1,6 +1,6 @@
 from datetime import date
 from decimal import Decimal
-from types.bond import BaseBond
+from bonds.models.bond import BaseBond
 
 
 def flat_term_pv(bond: BaseBond, market_rate: Decimal, valuation_date: date):
